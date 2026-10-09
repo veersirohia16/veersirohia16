@@ -104,7 +104,7 @@ Python app for salary processing, payslip generation and payroll automation.
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=veersirohia16&theme=tokyo-night&hide_border=true&area=true" alt="Contribution activity graph" width="100%" />
+  <img src="https://raw.githubusercontent.com/veersirohia16/veersirohia16/main/profile-activity/activity-graph.svg" alt="Contribution activity graph" width="100%" />
 </p>
 
 <p align="center">
