@@ -97,6 +97,28 @@ Python app for salary processing, payslip generation and payroll automation.
 
 ---
 
+## 📈 GitHub Activity
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=veersirohia16&theme=tokyonight&hide_border=true" alt="GitHub streak" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=veersirohia16&theme=tokyo-night&hide_border=true&area=true" alt="Contribution activity graph" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/veersirohia16/veersirohia16/main/profile-3d-contrib/profile-night-rainbow.svg" alt="3D contribution graph" width="100%" />
+</p>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/veersirohia16/veersirohia16/output/pacman-contribution-graph-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/veersirohia16/veersirohia16/output/pacman-contribution-graph.svg">
+  <img alt="Pac-Man contribution graph" src="https://raw.githubusercontent.com/veersirohia16/veersirohia16/output/pacman-contribution-graph.svg" width="100%">
+</picture>
+
+---
+
 ## 📜 Certifications
 
 - Introduction to Operating Systems — NPTEL
