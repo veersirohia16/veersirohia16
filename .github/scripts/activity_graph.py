@@ -12,21 +12,24 @@ DAYS = 31
 
 
 def fetch():
-    to = date.today()
-    frm = to - timedelta(days=DAYS - 1)
-    q = """query($u:String!,$f:DateTime!,$t:DateTime!){user(login:$u){
-      contributionsCollection(from:$f,to:$t){contributionCalendar{
-      weeks{contributionDays{date contributionCount}}}}}}"""
-    body = json.dumps({"query": q, "variables": {
-        "u": USER, "f": f"{frm}T00:00:00Z", "t": f"{to}T23:59:59Z"}}).encode()
-    req = urllib.request.Request("https://api.github.com/graphql", data=body,
-                                 headers={"Authorization": f"bearer {TOKEN}",
-                                          "Content-Type": "application/json"})
-    data = json.load(urllib.request.urlopen(req))
-    weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-    days = [d for w in weeks for d in w["contributionDays"]]
-    days = [d for d in days if str(frm) <= d["date"] <= str(to)]
-    return [(d["date"], d["contributionCount"]) for d in days][-DAYS:]
+    """Read the public contribution calendar (includes private counts when enabled)."""
+    import re
+    req = urllib.request.Request(f"https://github.com/users/{USER}/contributions",
+                                 headers={"User-Agent": "profile-activity-graph"})
+    html = urllib.request.urlopen(req).read().decode()
+    tips = {m.group(1): m.group(2) for m in re.finditer(
+        r'<tool-tip[^>]*for="([^"]+)"[^>]*>([^<]*)</tool-tip>', html)}
+    days = []
+    for m in re.finditer(r'<td[^>]*data-date="([0-9-]+)"[^>]*>', html):
+        td = m.group(0)
+        idm = re.search(r'id="([^"]+)"', td)
+        tip = tips.get(idm.group(1), "") if idm else ""
+        num = re.match(r"\s*(\d+)", tip)
+        days.append((m.group(1), int(num.group(1)) if num else 0))
+    days.sort()
+    today = str(date.today())
+    days = [d for d in days if d[0] <= today]
+    return days[-DAYS:]
 
 
 def render(days):
